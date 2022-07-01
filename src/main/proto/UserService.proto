@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package com.example.userservice;
+
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+
+message User {
+  int64 id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  int32 age = 4;
+}
+
+message Users {
+  repeated User users = 1;
+}
+
+message UserDto {
+  string firstName = 1;
+  string lastName = 2;
+  int32 age = 3;
+}
+
+message UserId {
+  int64 id = 1;
+}
+
+service UserService {
+  rpc getUser(UserId) returns (User);
+  rpc getUsers(google.protobuf.Empty) returns (Users);
+  rpc createUser(UserDto) returns (User);
+  rpc updateUser(User) returns (User);
+  rpc deleteUser(UserId) returns (UserId);
+}
+
+
+
+
+
+
